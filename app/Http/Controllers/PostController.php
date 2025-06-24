@@ -90,4 +90,21 @@ class PostController extends Controller
             'post' => $post,
         ]);
     }
+
+    public function destroy($id)
+    {
+        $post = Post::find($id);
+
+        if (! $post) {
+            return response()->json(['message' => 'Post not found'], 404);
+        }
+
+        if ($post->user_id !== Auth::id()) {
+            return response()->json(['message' => 'Unauthorized'], 403);
+        }
+
+        $post->delete();
+
+        return response()->json(['message' => 'Post deleted successfully']);
+    }
 }
