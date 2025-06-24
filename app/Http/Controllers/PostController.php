@@ -45,4 +45,22 @@ class PostController extends Controller
     {
         return view('posts.create');
     }
+
+    public function show($id)
+    {
+        $post = Post::with('user')
+            ->where('id', $id)
+            ->where('is_draft', false)
+            ->where(function ($query) {
+                $query->whereNull('published_at')
+                    ->orWhere('published_at', '<=', now());
+            })
+            ->first();
+
+        if (! $post) {
+            return response()->json(['message' => 'Post not found'], 404);
+        }
+
+        return response()->json($post);
+    }
 }
