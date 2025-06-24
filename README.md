@@ -2,6 +2,12 @@
 
 A Laravel-based project implementing RESTful routes for a Post model, with support for drafts, scheduled publishing, and user-authenticated operations.
 
+## 📅 Timeline
+
+- Test started: June 23, 2025  
+- Test completed: June 24, 2025  
+- Time spent: ~1–2 days (including implementation & testing)
+
 -----------------
 
 ## 🚀 How to Run the Project
